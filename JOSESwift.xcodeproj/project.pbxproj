@@ -268,7 +268,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0AAC9BA224868A0200AB8FCB /* JOSESwift */ = {
+		0AAC9B9D2486868300AB8FCB /* JOSESwift */ = {
 			isa = PBXGroup;
 			children = (
 				8A30B8F622118FD0001834E3 /* CompressionImplementation */,
@@ -442,7 +442,7 @@
 		65A9D3E21F45CDF1004E0B61 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				0AAC9BA224868A0200AB8FCB /* JOSESwift */,
+				0AAC9B9D2486868300AB8FCB /* JOSESwift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
