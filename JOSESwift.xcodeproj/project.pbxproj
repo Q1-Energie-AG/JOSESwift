@@ -268,6 +268,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0AAC9BA224868A0200AB8FCB /* JOSESwift */ = {
+			isa = PBXGroup;
+			children = (
+				8A30B8F622118FD0001834E3 /* CompressionImplementation */,
+				6582C0BB1F4B09DC00B153D5 /* Common */,
+				65FABAEB1F4AD8FA006D7679 /* JWS */,
+				653355281F8F6B4A00A660C6 /* JWE */,
+				65E9CE201FE2AB06005DF679 /* JWK */,
+				65FABAE81F4ABF61006D7679 /* CryptoInterface */,
+				C86B876B203D84D300208387 /* CryptoImplementation */,
+			);
+			path = JOSESwift;
+			sourceTree = "<group>";
+		};
 		65125A2C1FBF6B79007CF3AE /* JWS */ = {
 			isa = PBXGroup;
 			children = (
@@ -339,6 +353,7 @@
 				6572C2F11F96428800D4186D /* Decrypter.swift */,
 			);
 			name = JWE;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		6558164123F4390D00EA5FEC /* KeyEncryption */ = {
@@ -407,6 +422,7 @@
 				C86B876C203D857B00208387 /* JOSESwiftError.swift */,
 			);
 			name = Common;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		65A9D3D81F45CDD7004E0B61 /* Tests */ = {
@@ -426,13 +442,7 @@
 		65A9D3E21F45CDF1004E0B61 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				8A30B8F622118FD0001834E3 /* CompressionImplementation */,
-				6582C0BB1F4B09DC00B153D5 /* Common */,
-				65FABAEB1F4AD8FA006D7679 /* JWS */,
-				653355281F8F6B4A00A660C6 /* JWE */,
-				65E9CE201FE2AB06005DF679 /* JWK */,
-				65FABAE81F4ABF61006D7679 /* CryptoInterface */,
-				C86B876B203D84D300208387 /* CryptoImplementation */,
+				0AAC9BA224868A0200AB8FCB /* JOSESwift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -495,6 +505,7 @@
 				5FB76EBD36093E9EC475BC2B /* ECKeyCodable.swift */,
 			);
 			name = JWK;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		65FABAE81F4ABF61006D7679 /* CryptoInterface */ = {
@@ -506,6 +517,7 @@
 				5FB767ECBB50E5A47C671DC1 /* ECVerifier.swift */,
 			);
 			name = CryptoInterface;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		65FABAEB1F4AD8FA006D7679 /* JWS */ = {
@@ -517,6 +529,7 @@
 				65D868101F7CEBA200769BBF /* Verifier.swift */,
 			);
 			name = JWS;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		65FBFDD81F45CC7C005C7D68 = {
