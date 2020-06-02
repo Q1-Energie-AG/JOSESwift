@@ -147,7 +147,7 @@ internal struct P256EC {
     let signature = try privateKey.signature(for: signingInput)
 
     // unpack BER encoded ASN.1 format signature to raw format as specified for JWS
-    let ecSignatureTLV = [UInt8](signature.rawRepresentation)
+    let ecSignatureTLV = [UInt8](signature.derRepresentation)
     do {
         let ecSignature = try ecSignatureTLV.read(.sequence)
         let varlenR = try Data(ecSignature.read(.integer))
