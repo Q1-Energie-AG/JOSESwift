@@ -21,6 +21,7 @@
 //  ---------------------------------------------------------------------------
 //
 
+import CryptoKit
 import Foundation
 import Security
 import CommonCrypto
@@ -133,6 +134,74 @@ public enum ECCompression: UInt8 {
     case Uncompressed = 0x04 // supported only
     case HybridYEven = 0x06
     case HybridYOdd = 0x07
+}
+
+internal struct P256EC {
+  typealias KeyType = P256.Signing.PrivateKey
+  
+  static func sign(_ signingInput: Data, with privateKey: KeyType, and algorithm: SignatureAlgorithm) throws -> Data {
+    guard let curveType = algorithm.curveType else {
+        throw ECError.invalidCurveDigestAlgorithm
+    }
+
+    let signature = try privateKey.signature(for: signingInput)
+
+    // unpack BER encoded ASN.1 format signature to raw format as specified for JWS
+    let ecSignatureTLV = [UInt8](signature.rawRepresentation)
+    do {
+        let ecSignature = try ecSignatureTLV.read(.sequence)
+        let varlenR = try Data(ecSignature.read(.integer))
+        let varlenS = try Data(ecSignature.skip(.integer).read(.integer))
+        let fixlenR = Asn1IntegerConversion.toRaw(varlenR, of: curveType.coordinateOctetLength)
+        let fixlenS = Asn1IntegerConversion.toRaw(varlenS, of: curveType.coordinateOctetLength)
+
+        return fixlenR + fixlenS
+    } catch {
+        throw ECError.signingFailed(description: "Could not unpack ASN.1 EC signature.")
+    }
+  }
+  
+  // Converting integers to and from DER encoded ASN.1 as described here:
+  // https://docs.microsoft.com/en-us/windows/desktop/seccertenroll/about-integer
+  // This conversion is required because the Secure Enclave only supports generating ASN.1 encoded signatures,
+  // while the JWS Standard requires raw signatures, where the R and S are unsigned integers with a fixed length:
+  // https://github.com/airsidemobile/JOSESwift/pull/156#discussion_r292370209
+  // https://tools.ietf.org/html/rfc7515#appendix-A.3.1
+  internal struct Asn1IntegerConversion {
+      static func toRaw(_ data: Data, of fixedLength: Int) -> Data {
+          let varLength = data.count
+          if varLength > fixedLength + 1 {
+              fatalError("ASN.1 integer is \(varLength) bytes long when it should be < \(fixedLength + 1).")
+          }
+          if varLength == fixedLength + 1 {
+              assert(data.first == 0)
+              return data.dropFirst()
+          }
+          if varLength == fixedLength {
+              return data
+          }
+          if varLength < fixedLength {
+              // pad to fixed length using 0x00 bytes
+              return Data(count: fixedLength - varLength) + data
+          }
+          fatalError("Unable to parse ASN.1 integer. This should be unreachable.")
+      }
+
+      static func fromRaw(_ data: Data) -> Data {
+          assert(data.count > 0)
+          let msb: UInt8 = 0b1000_0000
+          // drop all leading zero bytes
+          let varlen = data.drop { $0 == 0}
+          guard let firstNonZero = varlen.first else {
+              // all bytes were zero so the encoded value is zero
+              return Data(count: 1)
+          }
+          if (firstNonZero & msb) == msb {
+              return Data(count: 1) + varlen
+          }
+          return varlen
+      }
+  }
 }
 
 internal struct EC {

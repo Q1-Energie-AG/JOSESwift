@@ -22,6 +22,7 @@
 //  ---------------------------------------------------------------------------
 //
 
+import CryptoKit
 import Foundation
 
 protocol SignerProtocol {
@@ -53,11 +54,16 @@ public struct Signer<KeyType> {
             // swiftlint:disable:next force_cast
             self.signer = RSASigner(algorithm: signingAlgorithm, privateKey: privateKey as! RSASigner.KeyType)
         case .ES256, .ES384, .ES512:
-            guard type(of: privateKey) is ECSigner.KeyType.Type else {
-                return nil
-            }
+          switch type(of: privateKey) {
+          case is ECSigner.KeyType.Type:
             // swiftlint:disable:next force_cast
             self.signer = ECSigner(algorithm: signingAlgorithm, privateKey: privateKey as! ECSigner.KeyType)
+          case is P256Signer.KeyType.Type:
+            // swiftlint:disable:next force_cast
+            self.signer = P256Signer(algorithm: signingAlgorithm, privateKey: privateKey as! P256.Signing.PrivateKey)
+          default:
+            return nil
+          }
         }
     }
 
