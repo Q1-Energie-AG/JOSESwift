@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "JOSESwift",
 	platforms: [
-        .macOS(.v10_13), .iOS(.v10)
+        .macOS(.v10_13), .iOS(.v13)
     ],
     products: [
         .library(
