@@ -61,6 +61,8 @@ public struct Signer<KeyType> {
           case is P256Signer.KeyType.Type:
             // swiftlint:disable:next force_cast
             self.signer = P256Signer(algorithm: signingAlgorithm, privateKey: privateKey as! P256.Signing.PrivateKey)
+          case is SecureEnclaveSigner.KeyType.Type:
+            self.signer = SecureEnclaveSigner(algorithm: signingAlgorithm, privateKey: privateKey as! SecureEnclave.P256.Signing.PrivateKey)
           default:
             return nil
           }
