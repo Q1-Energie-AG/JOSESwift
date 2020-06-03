@@ -17,3 +17,15 @@ internal struct P256Signer: SignerProtocol {
       return try P256EC.sign(signingInput, with: privateKey, and: algorithm)
     }
 }
+
+/// A `Signer` to sign an input with an elliptic curve algorithm.
+internal struct SecureEnclaveSigner: SignerProtocol {
+    typealias KeyType = SecureEnclave.P256.Signing.PrivateKey
+
+    let algorithm: SignatureAlgorithm
+    let privateKey: KeyType
+
+    func sign(_ signingInput: Data) throws -> Data {
+      return try SecureEnclaveEC.sign(signingInput, with: privateKey, and: algorithm)
+    }
+}
