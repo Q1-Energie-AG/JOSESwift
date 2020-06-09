@@ -22,6 +22,9 @@
 //
 
 import Foundation
+#if canImport(CryptoKit)
+import CryptoKit
+#endif
 
 /// A `Signer` to sign an input with an elliptic curve algorithm.
 internal struct ECSigner: SignerProtocol {
@@ -33,4 +36,52 @@ internal struct ECSigner: SignerProtocol {
     func sign(_ signingInput: Data) throws -> Data {
         return try EC.sign(signingInput, with: privateKey, and: algorithm)
     }
+}
+
+@available(iOS 13.0, *)
+internal struct P256Signer: SignerProtocol {
+  typealias KeyType = P256.Signing.PrivateKey
+
+  let algorithm: SignatureAlgorithm = .ES256
+  let privateKey: KeyType
+
+  func sign(_ signingInput: Data) throws -> Data {
+    return try privateKey.sign(signingInput)
+  }
+}
+
+@available(iOS 13.0, *)
+internal struct P384Signer: SignerProtocol {
+  typealias KeyType = P384.Signing.PrivateKey
+
+  let algorithm: SignatureAlgorithm = .ES384
+  let privateKey: KeyType
+
+  func sign(_ signingInput: Data) throws -> Data {
+    return try privateKey.sign(signingInput)
+  }
+}
+
+@available(iOS 13.0, *)
+internal struct P521Signer: SignerProtocol {
+  typealias KeyType = P521.Signing.PrivateKey
+
+  let algorithm: SignatureAlgorithm = .ES512
+  let privateKey: KeyType
+
+  func sign(_ signingInput: Data) throws -> Data {
+    return try privateKey.sign(signingInput)
+  }
+}
+
+@available(iOS 13.0, *)
+internal struct SecureEnclaveP256Signer: SignerProtocol {
+  typealias KeyType = SecureEnclave.P256.Signing.PrivateKey
+
+  let algorithm: SignatureAlgorithm = .ES256
+  let privateKey: KeyType
+
+  func sign(_ signingInput: Data) throws -> Data {
+    return try privateKey.sign(signingInput)
+  }
 }

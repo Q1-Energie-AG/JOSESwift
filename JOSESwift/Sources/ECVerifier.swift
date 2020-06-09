@@ -22,6 +22,9 @@
 //
 
 import Foundation
+#if canImport(CryptoKit)
+import CryptoKit
+#endif
 
 /// A `Verifier` to verify a signature created with an elliptic curve algorithm.
 internal struct ECVerifier: VerifierProtocol {
@@ -33,4 +36,40 @@ internal struct ECVerifier: VerifierProtocol {
     func verify(_ verifyingInput: Data, against signature: Data) throws -> Bool {
         return try EC.verify(verifyingInput, against: signature, with: publicKey, and: algorithm)
     }
+}
+
+@available(iOS 13.0, *)
+internal struct P256Verifier: VerifierProtocol {
+  typealias KeyType = P256.Signing.PublicKey
+
+  let algorithm: SignatureAlgorithm = .ES256
+  let publicKey: KeyType
+
+  func verify(_ verifyingInput: Data, against signature: Data) throws -> Bool {
+      return try publicKey.verify(verifyingInput, against: signature)
+  }
+}
+
+@available(iOS 13.0, *)
+internal struct P384Verifier: VerifierProtocol {
+  typealias KeyType = P384.Signing.PublicKey
+
+  let algorithm: SignatureAlgorithm = .ES384
+  let publicKey: KeyType
+
+  func verify(_ verifyingInput: Data, against signature: Data) throws -> Bool {
+      return try publicKey.verify(verifyingInput, against: signature)
+  }
+}
+
+@available(iOS 13.0, *)
+internal struct P521Verifier: VerifierProtocol {
+  typealias KeyType = P521.Signing.PublicKey
+
+  let algorithm: SignatureAlgorithm = .ES512
+  let publicKey: KeyType
+
+  func verify(_ verifyingInput: Data, against signature: Data) throws -> Bool {
+      return try publicKey.verify(verifyingInput, against: signature)
+  }
 }

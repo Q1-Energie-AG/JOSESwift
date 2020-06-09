@@ -25,52 +25,67 @@
 import Foundation
 
 protocol VerifierProtocol {
-    var algorithm: SignatureAlgorithm { get }
+  var algorithm: SignatureAlgorithm { get }
 
-    /// Verifies a signature against a given signing input with a specific algorithm and the corresponding key.
-    ///
-    /// - Parameters:
-    ///   - signingInput: The input to verify against.
-    ///   - signature: The signature to verify.
-    /// - Returns: True if the signature is verified, false if it is not verified.
-    /// - Throws: `JWSError` if any error occurs during verifying.
-    func verify(_ signingInput: Data, against signature: Data) throws -> Bool
+  /// Verifies a signature against a given signing input with a specific algorithm and the corresponding key.
+  ///
+  /// - Parameters:
+  ///   - signingInput: The input to verify against.
+  ///   - signature: The signature to verify.
+  /// - Returns: True if the signature is verified, false if it is not verified.
+  /// - Throws: `JWSError` if any error occurs during verifying.
+  func verify(_ signingInput: Data, against signature: Data) throws -> Bool
 }
 
 public struct Verifier {
-    let verifier: VerifierProtocol
+  let verifier: VerifierProtocol
 
-    /// Constructs a verifyer used to verify a JWS.
-    ///
-    /// - Parameters:
-    ///   - signingAlgorithm: A desired `SignatureAlgorithm`.
-    ///   - privateKey: The public key used to verify the JWS's signature. Currently supported key types are: `SecKey`.
-    /// - Returns: A fully initialized `Verifier` or `nil` if provided key is of the wrong type.
-    public init?<KeyType>(verifyingAlgorithm: SignatureAlgorithm, publicKey: KeyType) {
-        switch verifyingAlgorithm {
-        case .RS256, .RS384, .RS512, .PS256, .PS384, .PS512:
-            guard type(of: publicKey) is RSAVerifier.KeyType.Type else {
-                return nil
-            }
-            // swiftlint:disable:next force_cast
-            self.verifier = RSAVerifier(algorithm: verifyingAlgorithm, publicKey: publicKey as! RSAVerifier.KeyType)
-        case .ES256, .ES384, .ES512:
-            guard type(of: publicKey) is ECVerifier.KeyType.Type else {
-                return nil
-            }
-            self.verifier = ECVerifier(algorithm: verifyingAlgorithm, publicKey: publicKey as! ECVerifier.KeyType)
+  /// Constructs a verifyer used to verify a JWS.
+  ///
+  /// - Parameters:
+  ///   - signingAlgorithm: A desired `SignatureAlgorithm`.
+  ///   - privateKey: The public key used to verify the JWS's signature. Currently supported key types are: `SecKey`.
+  /// - Returns: A fully initialized `Verifier` or `nil` if provided key is of the wrong type.
+  public init?<KeyType>(verifyingAlgorithm: SignatureAlgorithm, publicKey: KeyType) {
+    switch verifyingAlgorithm {
+    case .RS256, .RS384, .RS512, .PS256, .PS384, .PS512:
+      guard type(of: publicKey) is RSAVerifier.KeyType.Type else {
+        return nil
+      }
+      // swiftlint:disable:next force_cast
+      self.verifier = RSAVerifier(algorithm: verifyingAlgorithm, publicKey: publicKey as! RSAVerifier.KeyType)
+    case .ES256, .ES384, .ES512:
+      if #available(iOS 13.0, *) {
+        switch type(of: publicKey) {
+        case is P256Verifier.KeyType.Type:
+          self.verifier = P256Verifier(publicKey: publicKey as! P256Verifier.KeyType)
+          return
+        case is P384Verifier.KeyType.Type:
+          self.verifier = P384Verifier(publicKey: publicKey as! P384Verifier.KeyType)
+          return
+        case is P521Verifier.KeyType.Type:
+          self.verifier = P521Verifier(publicKey: publicKey as! P521Verifier.KeyType)
+          return
+        default:
+          break
         }
+      }
+      guard type(of: publicKey) is ECVerifier.KeyType.Type else {
+        return nil
+      }
+      self.verifier = ECVerifier(algorithm: verifyingAlgorithm, publicKey: publicKey as! ECVerifier.KeyType)
+    }
+  }
+
+  internal func verify(header: JWSHeader, and payload: Payload, against signature: Data) throws -> Bool {
+    guard let alg = header.algorithm, alg == verifier.algorithm else {
+      throw JWSError.algorithmMismatch
     }
 
-    internal func verify(header: JWSHeader, and payload: Payload, against signature: Data) throws -> Bool {
-        guard let alg = header.algorithm, alg == verifier.algorithm else {
-            throw JWSError.algorithmMismatch
-        }
-
-        guard let signingInput = [header, payload].asJOSESigningInput() else {
-            throw JWSError.cannotComputeSigningInput
-        }
-
-        return try verifier.verify(signingInput, against: signature)
+    guard let signingInput = [header, payload].asJOSESigningInput() else {
+      throw JWSError.cannotComputeSigningInput
     }
+
+    return try verifier.verify(signingInput, against: signature)
+  }
 }
