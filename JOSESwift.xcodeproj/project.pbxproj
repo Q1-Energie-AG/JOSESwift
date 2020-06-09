@@ -268,6 +268,189 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A2382B2248FB43000B30CEF /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				0A2382C1248FB52B00B30CEF /* JOSESwift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		0A2382B3248FB43E00B30CEF /* CompressionImplementation */ = {
+			isa = PBXGroup;
+			children = (
+				8A30B8F722118FD0001834E3 /* DeflateWrapper.swift */,
+			);
+			path = CompressionImplementation;
+			sourceTree = "<group>";
+		};
+		0A2382B4248FB44900B30CEF /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				65A77E931F7285A900A66DDE /* JOSEHeader.swift */,
+				65A7A1981F7295F5009449E7 /* Payload.swift */,
+				65353F5C1F750A6A003E099B /* DataExtensions.swift */,
+				65D1D0641F7A4DB3006377CD /* DataConvertible.swift */,
+				652F6DE81F73E6780002DEE0 /* Serializer.swift */,
+				65D1D0661F7A878D006377CD /* Deserializer.swift */,
+				C8610F082029B15600859FCC /* Algorithms.swift */,
+				658EE1AE23F4067D00B6E967 /* AlgorithmExtensions.swift */,
+				C86B876C203D857B00208387 /* JOSESwiftError.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		0A2382B5248FB45600B30CEF /* JWS */ = {
+			isa = PBXGroup;
+			children = (
+				C85B1EF1204D82640026BDCB /* JWS.swift */,
+				6571F6221F7BF786004D53C5 /* JWSHeader.swift */,
+				C85B1EF3204D82860026BDCB /* Signer.swift */,
+				65D868101F7CEBA200769BBF /* Verifier.swift */,
+			);
+			path = JWS;
+			sourceTree = "<group>";
+		};
+		0A2382B6248FB46900B30CEF /* JWE */ = {
+			isa = PBXGroup;
+			children = (
+				0A2382BB248FB4B400B30CEF /* ContentEncryption */,
+				0A2382B7248FB47200B30CEF /* KeyManagementMode */,
+				8A4B08B12213FF0600828536 /* Compressor.swift */,
+				6533552D1F8FB61000A660C6 /* JWE.swift */,
+				653355291F8F6B6800A660C6 /* JWEHeader.swift */,
+				65617FCA1F90F8C700D8C743 /* Encrypter.swift */,
+				6572C2F11F96428800D4186D /* Decrypter.swift */,
+			);
+			path = JWE;
+			sourceTree = "<group>";
+		};
+		0A2382B7248FB47200B30CEF /* KeyManagementMode */ = {
+			isa = PBXGroup;
+			children = (
+				6558164923F456F700EA5FEC /* KeyManagementMode.swift */,
+				0A2382BA248FB48E00B30CEF /* DirectEncryption */,
+				0A2382B9248FB48700B30CEF /* KeyWrapping */,
+				0A2382B8248FB47F00B30CEF /* KeyEncryption */,
+			);
+			path = KeyManagementMode;
+			sourceTree = "<group>";
+		};
+		0A2382B8248FB47F00B30CEF /* KeyEncryption */ = {
+			isa = PBXGroup;
+			children = (
+				65617FCC1F90FB7600D8C743 /* RSAKeyEncryptionMode.swift */,
+			);
+			path = KeyEncryption;
+			sourceTree = "<group>";
+		};
+		0A2382B9248FB48700B30CEF /* KeyWrapping */ = {
+			isa = PBXGroup;
+			children = (
+				657D0F7623FAE857004A7975 /* AESKeyWrappingMode.swift */,
+			);
+			path = KeyWrapping;
+			sourceTree = "<group>";
+		};
+		0A2382BA248FB48E00B30CEF /* DirectEncryption */ = {
+			isa = PBXGroup;
+			children = (
+				6558164323F44E8C00EA5FEC /* DirectEncryptionMode.swift */,
+			);
+			path = DirectEncryption;
+			sourceTree = "<group>";
+		};
+		0A2382BB248FB4B400B30CEF /* ContentEncryption */ = {
+			isa = PBXGroup;
+			children = (
+				6558164C23F45CC200EA5FEC /* ContentEncryption.swift */,
+				0A2382BC248FB4C100B30CEF /* AESCBCEncryption */,
+			);
+			path = ContentEncryption;
+			sourceTree = "<group>";
+		};
+		0A2382BC248FB4C100B30CEF /* AESCBCEncryption */ = {
+			isa = PBXGroup;
+			children = (
+				6558164F23F463C200EA5FEC /* AESCBCEncryption.swift */,
+			);
+			path = AESCBCEncryption;
+			sourceTree = "<group>";
+		};
+		0A2382BD248FB4D100B30CEF /* JWK */ = {
+			isa = PBXGroup;
+			children = (
+				65F44EB01FE2D941000C5EA0 /* JWK.swift */,
+				65E733D01FEBF7960009EAC6 /* JWKParameters.swift */,
+				65E733CB1FEBE8320009EAC6 /* JWKExtensions.swift */,
+				653656082035D86E00A3AC3B /* JWKSet.swift */,
+				6536560C2035DF8300A3AC3B /* JWKSetCodable.swift */,
+				65F44EB21FE2E1C6000C5EA0 /* RSAKeys.swift */,
+				65D8E8E720F499EF0059506A /* SymmetricKeys.swift */,
+				65D8E8E920F4AF880059506A /* SymmetricKeyCodable.swift */,
+				65826AB12028696000AFFC46 /* RSAKeyCodable.swift */,
+				6582614E2029F2D100B594ED /* ASN1DERParsing.swift */,
+				6514ADC82031DD15008A4DD3 /* ASN1DEREncoding.swift */,
+				5FB76A41AECF99F3673C1C40 /* ECKeys.swift */,
+				5FB76EBD36093E9EC475BC2B /* ECKeyCodable.swift */,
+			);
+			path = JWK;
+			sourceTree = "<group>";
+		};
+		0A2382BE248FB4DE00B30CEF /* CryptoInterface */ = {
+			isa = PBXGroup;
+			children = (
+				C85B1EF5204D82970026BDCB /* RSASigner.swift */,
+				65D8680E1F7CE35000769BBF /* RSAVerifier.swift */,
+				5FB76AF2833DDD77D56D6D3F /* ECSigner.swift */,
+				5FB767ECBB50E5A47C671DC1 /* ECVerifier.swift */,
+			);
+			path = CryptoInterface;
+			sourceTree = "<group>";
+		};
+		0A2382BF248FB4F000B30CEF /* CryptoImplementation */ = {
+			isa = PBXGroup;
+			children = (
+				6582614C2029E98A00B594ED /* DataRSAPublicKey.swift */,
+				65344C3D20F4CC9000FCBBA1 /* DataSymmetricKey.swift */,
+				6546FB0E2029DD10002E421F /* SecKeyRSAPublicKey.swift */,
+				C85012E21FE04E0C00EC49FA /* SecureRandom.swift */,
+				C81DD9271FD7096100026024 /* HMAC.swift */,
+				C81DBD571FFE66E700ECF69E /* AES.swift */,
+				C8610F0A2029D21800859FCC /* RSA.swift */,
+				5FB760DB390F90F91102DB74 /* EC.swift */,
+				5FB76CEA2BD69C2AF38D2AFC /* SecKeyECPublicKey.swift */,
+				5FB763EED5A790CCC29F8771 /* DataECPublicKey.swift */,
+				5FB7604267B94DC5091D7105 /* DataECPrivateKey.swift */,
+				5FB76E4A3A52AAC72B1F33F0 /* SecKeyECPrivateKey.swift */,
+			);
+			path = CryptoImplementation;
+			sourceTree = "<group>";
+		};
+		0A2382C0248FB4FF00B30CEF /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				65FBFDE51F45CC7C005C7D68 /* JOSESwift.h */,
+				65FBFDE61F45CC7C005C7D68 /* Info.plist */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		0A2382C1248FB52B00B30CEF /* JOSESwift */ = {
+			isa = PBXGroup;
+			children = (
+				0A2382B4248FB44900B30CEF /* Common */,
+				0A2382B3248FB43E00B30CEF /* CompressionImplementation */,
+				0A2382BF248FB4F000B30CEF /* CryptoImplementation */,
+				0A2382BE248FB4DE00B30CEF /* CryptoInterface */,
+				0A2382B6248FB46900B30CEF /* JWE */,
+				0A2382BD248FB4D100B30CEF /* JWK */,
+				0A2382B5248FB45600B30CEF /* JWS */,
+				0A2382C0248FB4FF00B30CEF /* Support */,
+			);
+			path = JOSESwift;
+			sourceTree = "<group>";
+		};
 		65125A2C1FBF6B79007CF3AE /* JWS */ = {
 			isa = PBXGroup;
 			children = (
@@ -327,88 +510,6 @@
 			name = Common;
 			sourceTree = "<group>";
 		};
-		653355281F8F6B4A00A660C6 /* JWE */ = {
-			isa = PBXGroup;
-			children = (
-				6558164523F44EBF00EA5FEC /* KeyManagementMode */,
-				6558164B23F45CAC00EA5FEC /* ContentEncryption */,
-				8A4B08B12213FF0600828536 /* Compressor.swift */,
-				6533552D1F8FB61000A660C6 /* JWE.swift */,
-				653355291F8F6B6800A660C6 /* JWEHeader.swift */,
-				65617FCA1F90F8C700D8C743 /* Encrypter.swift */,
-				6572C2F11F96428800D4186D /* Decrypter.swift */,
-			);
-			name = JWE;
-			sourceTree = "<group>";
-		};
-		6558164123F4390D00EA5FEC /* KeyEncryption */ = {
-			isa = PBXGroup;
-			children = (
-				65617FCC1F90FB7600D8C743 /* RSAKeyEncryptionMode.swift */,
-			);
-			name = KeyEncryption;
-			sourceTree = "<group>";
-		};
-		6558164223F44E4700EA5FEC /* DirectEncryption */ = {
-			isa = PBXGroup;
-			children = (
-				6558164323F44E8C00EA5FEC /* DirectEncryptionMode.swift */,
-			);
-			name = DirectEncryption;
-			sourceTree = "<group>";
-		};
-		6558164523F44EBF00EA5FEC /* KeyManagementMode */ = {
-			isa = PBXGroup;
-			children = (
-				6558164923F456F700EA5FEC /* KeyManagementMode.swift */,
-				6558164123F4390D00EA5FEC /* KeyEncryption */,
-				657D0F7523FAE4B5004A7975 /* KeyWrapping */,
-				6558164223F44E4700EA5FEC /* DirectEncryption */,
-			);
-			name = KeyManagementMode;
-			sourceTree = "<group>";
-		};
-		6558164B23F45CAC00EA5FEC /* ContentEncryption */ = {
-			isa = PBXGroup;
-			children = (
-				6558164C23F45CC200EA5FEC /* ContentEncryption.swift */,
-				6558164E23F462BC00EA5FEC /* AESCBCEncryption */,
-			);
-			name = ContentEncryption;
-			sourceTree = "<group>";
-		};
-		6558164E23F462BC00EA5FEC /* AESCBCEncryption */ = {
-			isa = PBXGroup;
-			children = (
-				6558164F23F463C200EA5FEC /* AESCBCEncryption.swift */,
-			);
-			name = AESCBCEncryption;
-			sourceTree = "<group>";
-		};
-		657D0F7523FAE4B5004A7975 /* KeyWrapping */ = {
-			isa = PBXGroup;
-			children = (
-				657D0F7623FAE857004A7975 /* AESKeyWrappingMode.swift */,
-			);
-			name = KeyWrapping;
-			sourceTree = "<group>";
-		};
-		6582C0BB1F4B09DC00B153D5 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				65A77E931F7285A900A66DDE /* JOSEHeader.swift */,
-				65A7A1981F7295F5009449E7 /* Payload.swift */,
-				65353F5C1F750A6A003E099B /* DataExtensions.swift */,
-				65D1D0641F7A4DB3006377CD /* DataConvertible.swift */,
-				652F6DE81F73E6780002DEE0 /* Serializer.swift */,
-				65D1D0661F7A878D006377CD /* Deserializer.swift */,
-				C8610F082029B15600859FCC /* Algorithms.swift */,
-				658EE1AE23F4067D00B6E967 /* AlgorithmExtensions.swift */,
-				C86B876C203D857B00208387 /* JOSESwiftError.swift */,
-			);
-			name = Common;
-			sourceTree = "<group>";
-		};
 		65A9D3D81F45CDD7004E0B61 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -421,29 +522,6 @@
 				65A9D3DB1F45CDD7004E0B61 /* Info.plist */,
 			);
 			path = Tests;
-			sourceTree = "<group>";
-		};
-		65A9D3E21F45CDF1004E0B61 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				8A30B8F622118FD0001834E3 /* CompressionImplementation */,
-				6582C0BB1F4B09DC00B153D5 /* Common */,
-				65FABAEB1F4AD8FA006D7679 /* JWS */,
-				653355281F8F6B4A00A660C6 /* JWE */,
-				65E9CE201FE2AB06005DF679 /* JWK */,
-				65FABAE81F4ABF61006D7679 /* CryptoInterface */,
-				C86B876B203D84D300208387 /* CryptoImplementation */,
-			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
-		65A9D3E31F45CDF7004E0B61 /* Support */ = {
-			isa = PBXGroup;
-			children = (
-				65FBFDE51F45CC7C005C7D68 /* JOSESwift.h */,
-				65FBFDE61F45CC7C005C7D68 /* Info.plist */,
-			);
-			path = Support;
 			sourceTree = "<group>";
 		};
 		65E733CD1FEBE9670009EAC6 /* JWK */ = {
@@ -477,52 +555,10 @@
 			name = JWK;
 			sourceTree = "<group>";
 		};
-		65E9CE201FE2AB06005DF679 /* JWK */ = {
-			isa = PBXGroup;
-			children = (
-				65F44EB01FE2D941000C5EA0 /* JWK.swift */,
-				65E733D01FEBF7960009EAC6 /* JWKParameters.swift */,
-				65E733CB1FEBE8320009EAC6 /* JWKExtensions.swift */,
-				653656082035D86E00A3AC3B /* JWKSet.swift */,
-				6536560C2035DF8300A3AC3B /* JWKSetCodable.swift */,
-				65F44EB21FE2E1C6000C5EA0 /* RSAKeys.swift */,
-				65D8E8E720F499EF0059506A /* SymmetricKeys.swift */,
-				65D8E8E920F4AF880059506A /* SymmetricKeyCodable.swift */,
-				65826AB12028696000AFFC46 /* RSAKeyCodable.swift */,
-				6582614E2029F2D100B594ED /* ASN1DERParsing.swift */,
-				6514ADC82031DD15008A4DD3 /* ASN1DEREncoding.swift */,
-				5FB76A41AECF99F3673C1C40 /* ECKeys.swift */,
-				5FB76EBD36093E9EC475BC2B /* ECKeyCodable.swift */,
-			);
-			name = JWK;
-			sourceTree = "<group>";
-		};
-		65FABAE81F4ABF61006D7679 /* CryptoInterface */ = {
-			isa = PBXGroup;
-			children = (
-				C85B1EF5204D82970026BDCB /* RSASigner.swift */,
-				65D8680E1F7CE35000769BBF /* RSAVerifier.swift */,
-				5FB76AF2833DDD77D56D6D3F /* ECSigner.swift */,
-				5FB767ECBB50E5A47C671DC1 /* ECVerifier.swift */,
-			);
-			name = CryptoInterface;
-			sourceTree = "<group>";
-		};
-		65FABAEB1F4AD8FA006D7679 /* JWS */ = {
-			isa = PBXGroup;
-			children = (
-				C85B1EF1204D82640026BDCB /* JWS.swift */,
-				6571F6221F7BF786004D53C5 /* JWSHeader.swift */,
-				C85B1EF3204D82860026BDCB /* Signer.swift */,
-				65D868101F7CEBA200769BBF /* Verifier.swift */,
-			);
-			name = JWS;
-			sourceTree = "<group>";
-		};
 		65FBFDD81F45CC7C005C7D68 = {
 			isa = PBXGroup;
 			children = (
-				65FBFDE41F45CC7C005C7D68 /* JOSESwift */,
+				0A2382B2248FB43000B30CEF /* Sources */,
 				65A9D3D81F45CDD7004E0B61 /* Tests */,
 				65FBFDE31F45CC7C005C7D68 /* Products */,
 				C8610F54202DD93600859FCC /* Frameworks */,
@@ -538,47 +574,11 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		65FBFDE41F45CC7C005C7D68 /* JOSESwift */ = {
-			isa = PBXGroup;
-			children = (
-				65A9D3E31F45CDF7004E0B61 /* Support */,
-				65A9D3E21F45CDF1004E0B61 /* Sources */,
-			);
-			path = JOSESwift;
-			sourceTree = "<group>";
-		};
-		8A30B8F622118FD0001834E3 /* CompressionImplementation */ = {
-			isa = PBXGroup;
-			children = (
-				8A30B8F722118FD0001834E3 /* DeflateWrapper.swift */,
-			);
-			path = CompressionImplementation;
-			sourceTree = "<group>";
-		};
 		C8610F54202DD93600859FCC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C86B876B203D84D300208387 /* CryptoImplementation */ = {
-			isa = PBXGroup;
-			children = (
-				6582614C2029E98A00B594ED /* DataRSAPublicKey.swift */,
-				65344C3D20F4CC9000FCBBA1 /* DataSymmetricKey.swift */,
-				6546FB0E2029DD10002E421F /* SecKeyRSAPublicKey.swift */,
-				C85012E21FE04E0C00EC49FA /* SecureRandom.swift */,
-				C81DD9271FD7096100026024 /* HMAC.swift */,
-				C81DBD571FFE66E700ECF69E /* AES.swift */,
-				C8610F0A2029D21800859FCC /* RSA.swift */,
-				5FB760DB390F90F91102DB74 /* EC.swift */,
-				5FB76CEA2BD69C2AF38D2AFC /* SecKeyECPublicKey.swift */,
-				5FB763EED5A790CCC29F8771 /* DataECPublicKey.swift */,
-				5FB7604267B94DC5091D7105 /* DataECPrivateKey.swift */,
-				5FB76E4A3A52AAC72B1F33F0 /* SecKeyECPrivateKey.swift */,
-			);
-			path = CryptoImplementation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1009,7 +1009,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = JOSESwift/Support/Info.plist;
+				INFOPLIST_FILE = Sources/JOSESwift/Support/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.airsidemobile.JOSESwift;
@@ -1031,7 +1031,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = JOSESwift/Support/Info.plist;
+				INFOPLIST_FILE = Sources/JOSESwift/Support/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.airsidemobile.JOSESwift;
