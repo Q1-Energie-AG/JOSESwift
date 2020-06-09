@@ -132,6 +132,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A2382C9248FB81900B30CEF /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		5FB7604267B94DC5091D7105 /* DataECPrivateKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataECPrivateKey.swift; sourceTree = "<group>"; };
 		5FB760DB390F90F91102DB74 /* EC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EC.swift; sourceTree = "<group>"; };
 		5FB7625CF5EF5D8F2135967F /* JWKECDecodingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JWKECDecodingTests.swift; sourceTree = "<group>"; };
@@ -566,6 +567,7 @@
 		65FBFDD81F45CC7C005C7D68 = {
 			isa = PBXGroup;
 			children = (
+				0A2382C9248FB81900B30CEF /* Package.swift */,
 				0A2382B2248FB43000B30CEF /* Sources */,
 				65A9D3D81F45CDD7004E0B61 /* Tests */,
 				65FBFDE31F45CC7C005C7D68 /* Products */,
