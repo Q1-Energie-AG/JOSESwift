@@ -26,8 +26,8 @@ import XCTest
 @testable import JOSESwift
 
 class JWSHeaderTests: XCTestCase {
-    let parameterDict = ["alg": "\(SignatureAlgorithm.RS512.rawValue)"]
-    let parameterData = try! JSONSerialization.data(withJSONObject: ["alg": "\(SignatureAlgorithm.RS512.rawValue)"], options: [])
+    let parameterDict = ["alg": "\(SignatureAlgorithm.ES256.rawValue)"]
+    let parameterData = try! JSONSerialization.data(withJSONObject: ["alg": "\(SignatureAlgorithm.ES256.rawValue)"], options: [])
 
     override func setUp() {
         super.setUp()
@@ -48,18 +48,18 @@ class JWSHeaderTests: XCTestCase {
         let data = try! JSONSerialization.data(withJSONObject: parameterDict, options: [])
         let header = JWSHeader(data)!
 
-        XCTAssertEqual(header.parameters["alg"] as? String, SignatureAlgorithm.RS512.rawValue)
+        XCTAssertEqual(header.parameters["alg"] as? String, SignatureAlgorithm.ES256.rawValue)
         XCTAssertEqual(header.data(), data)
     }
 
     func testInitWithAlg() {
-        let header = JWSHeader(algorithm: .RS512)
+        let header = JWSHeader(algorithm: .ES256)
 
         XCTAssertEqual(header.data().count, try! JSONSerialization.data(withJSONObject: parameterDict, options: []).count)
-        XCTAssertEqual(header.parameters["alg"] as? String, SignatureAlgorithm.RS512.rawValue)
+        XCTAssertEqual(header.parameters["alg"] as? String, SignatureAlgorithm.ES256.rawValue)
 
         XCTAssertNotNil(header.algorithm)
-        XCTAssertEqual(header.algorithm!, .RS512)
+        XCTAssertEqual(header.algorithm!, .ES256)
     }
 
     func testInitDirectlyWithMissingRequiredParameters() {
@@ -113,7 +113,7 @@ class JWSHeaderTests: XCTestCase {
         let cty = "cty"
         let crit = ["crit1", "crit2"]
 
-        var header = JWSHeader(algorithm: .RS512)
+        var header = JWSHeader(algorithm: .ES512)
         header.jku = jku
         header.jwk = jwk
         header.kid = kid

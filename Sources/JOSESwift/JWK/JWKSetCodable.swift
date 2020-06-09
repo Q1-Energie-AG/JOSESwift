@@ -36,8 +36,6 @@ internal enum JWKBaseParameter: String, CodingKey {
 internal enum JWKTypeError: Error {
     case typeIsECPrivate
     case typeIsECPublic
-    case typeIsRSAPublic
-    case typeIsRSAPrivate
     case typeIsSymmetric
     case typeIsUnknown
 }
@@ -48,12 +46,6 @@ class JWKBase: Decodable {
         let key = try container.decode(String.self, forKey: .kty)
         let d = try? container.decode(String.self, forKey: .d)
         switch key {
-        case JWKKeyType.RSA.rawValue:
-            if d == nil {
-                throw JWKTypeError.typeIsRSAPublic
-            } else {
-                throw JWKTypeError.typeIsRSAPrivate
-            }
         case JWKKeyType.OCT.rawValue:
             throw JWKTypeError.typeIsSymmetric
         case JWKKeyType.EC.rawValue:
@@ -75,12 +67,6 @@ extension JWKSet: Encodable {
 
         for key in self.keys {
             switch key {
-            case is RSAPublicKey:
-                // swiftlint:disable:next force_cast
-                try keyContainer.encode(key as! RSAPublicKey)
-            case is RSAPrivateKey:
-                // swiftlint:disable:next force_cast
-                try keyContainer.encode(key as! RSAPrivateKey)
             case is SymmetricKey:
                 // swiftlint:disable:next force_cast
                 try keyContainer.encode(key as! SymmetricKey)
@@ -113,10 +99,6 @@ extension JWKSet: Decodable {
                 maybeKey = try? keyContainer.decode(ECPublicKey.self)
             } catch JWKTypeError.typeIsECPrivate {
                 maybeKey = try? keyContainer.decode(ECPrivateKey.self)
-            } catch JWKTypeError.typeIsRSAPublic {
-                maybeKey = try? keyContainer.decode(RSAPublicKey.self)
-            } catch JWKTypeError.typeIsRSAPrivate {
-                maybeKey = try? keyContainer.decode(RSAPrivateKey.self)
             } catch JWKTypeError.typeIsSymmetric {
                 maybeKey = try? keyContainer.decode(SymmetricKey.self)
             } catch {

@@ -47,22 +47,20 @@ public struct Signer<KeyType> {
     /// - Returns: A fully initialized `Signer` or `nil` if provided key is of the wrong type.
     public init?(signingAlgorithm: SignatureAlgorithm, privateKey: KeyType) {
         switch signingAlgorithm {
-        case .RS256, .RS384, .RS512, .PS256, .PS384, .PS512:
-            guard type(of: privateKey) is RSASigner.KeyType.Type else {
-                return nil
-            }
-            // swiftlint:disable:next force_cast
-            self.signer = RSASigner(algorithm: signingAlgorithm, privateKey: privateKey as! RSASigner.KeyType)
         case .ES256, .ES384, .ES512:
           switch type(of: privateKey) {
           case is ECSigner.KeyType.Type:
             // swiftlint:disable:next force_cast
             self.signer = ECSigner(algorithm: signingAlgorithm, privateKey: privateKey as! ECSigner.KeyType)
-          case is P256Signer.KeyType.Type:
+          case is P256.Signing.PrivateKey.Type:
             // swiftlint:disable:next force_cast
-            self.signer = P256Signer(algorithm: signingAlgorithm, privateKey: privateKey as! P256.Signing.PrivateKey)
-          case is SecureEnclaveSigner.KeyType.Type:
-            self.signer = SecureEnclaveSigner(algorithm: signingAlgorithm, privateKey: privateKey as! SecureEnclave.P256.Signing.PrivateKey)
+            self.signer = privateKey as! P256.Signing.PrivateKey
+          case is P384.Signing.PrivateKey.Type:
+            self.signer = privateKey as! P384.Signing.PrivateKey
+          case is P521.Signing.PrivateKey.Type:
+            self.signer = privateKey as! P521.Signing.PrivateKey
+          case is SecureEnclave.P256.Signing.PrivateKey.Type:
+            self.signer = privateKey as! SecureEnclave.P256.Signing.PrivateKey
           default:
             return nil
           }

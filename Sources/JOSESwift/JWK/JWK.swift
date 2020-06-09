@@ -26,8 +26,6 @@ import Foundation
 
 /// JWK related errors
 internal enum JWKError: Error {
-    case cannotExtractRSAPublicKeyComponents
-    case cannotExtractRSAPrivateKeyComponents
     case notAPublicKey
     case notAPrivateKey
     case cannotConvertToSecKeyChildClasses
@@ -41,7 +39,6 @@ internal enum JWKError: Error {
 /// family used with the key(s) represented by a JWK.
 /// See [RFC-7518](https://tools.ietf.org/html/rfc7518#section-7.4) for details.
 public enum JWKKeyType: String, Codable {
-    case RSA = "RSA"
     case OCT = "oct"
     case EC = "EC"
 }

@@ -28,18 +28,6 @@ import Foundation
 ///
 /// See [RFC 7518, Section 3](https://tools.ietf.org/html/rfc7518#section-3).
 public enum SignatureAlgorithm: String {
-    /// RSASSA-PKCS1-v1_5 using SHA-256
-    case RS256
-    /// RSASSA-PKCS1-v1_5 using SHA-384
-    case RS384
-    /// RSASSA-PKCS1-v1_5 using SHA-256
-    case RS512
-    /// RSASSA-PSS using SHA-256 and MGF1 with SHA-256
-    @available(iOS 11, *) case PS256
-    /// RSASSA-PSS using SHA-384 and MGF1 with SHA-384
-    @available(iOS 11, *) case PS384
-    /// RSASSA-PSS using SHA-512 and MGF1 with SHA-512
-    @available(iOS 11, *) case PS512
     /// ECDSA P-256 using SHA-256
     case ES256
     /// ECDSA P-384 using SHA-384
@@ -52,12 +40,6 @@ public enum SignatureAlgorithm: String {
 ///
 /// See [RFC 7518, Section 4](https://tools.ietf.org/html/rfc7518#section-4).
 public enum KeyManagementAlgorithm: String, CaseIterable {
-    /// Key encryption using RSAES-PKCS1-v1_5
-    case RSA1_5 = "RSA1_5"
-    /// Key encryption using RSAES OAEP using SHA-1 and MGF1 with SHA-1
-    case RSAOAEP = "RSA-OAEP"
-    /// Key encryption using RSAES OAEP using SHA-256 and MGF1 with SHA-256
-    case RSAOAEP256 = "RSA-OAEP-256"
     // Key wrapping using AES Key Wrap with default initial value using 128-bit key
     case A128KW
     // Key wrapping using AES Key Wrap with default initial value using 192-bit key

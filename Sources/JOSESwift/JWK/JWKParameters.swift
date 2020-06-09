@@ -43,14 +43,6 @@ public enum JWKParameter: String, CodingKey {
     ]
 }
 
-/// RSA specific JWK parameters.
-/// See [RFC-7518, Section 6.3](https://tools.ietf.org/html/rfc7518#section-6.3) for details.
-public enum RSAParameter: String, CodingKey {
-    case modulus = "n"
-    case exponent = "e"
-    case privateExponent = "d"
-}
-
 /// Symmetric key specific JWK parameters.
 /// See [RFC-7518, Section 6.3](https://tools.ietf.org/html/rfc7518#section-6.4) for details.
 public enum SymmetricKeyParameter: String, CodingKey {

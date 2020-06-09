@@ -24,62 +24,62 @@
 import XCTest
 @testable import JOSESwift
 
-class JWKSetCollectionTests: XCTestCase {
-
-    let rsaKeys = [
-        RSAPublicKey(modulus: "modulus0", exponent: "exponent0"),
-        RSAPublicKey(modulus: "modulus1", exponent: "exponent1"),
-        RSAPublicKey(modulus: "modulus2", exponent: "exponent2")
-    ]
-
-    func testFowardIterating() {
-        let set = JWKSet(keys: rsaKeys)
-
-        for (index, key) in set.enumerated() {
-            XCTAssertEqual((key as! RSAPublicKey).modulus, rsaKeys[index].modulus)
-            XCTAssertEqual((key as! RSAPublicKey).exponent, rsaKeys[index].exponent)
-        }
-    }
-
-    func testCreationFromArrayLiteral() {
-        let set: JWKSet = [
-            RSAPublicKey(modulus: "modulus0", exponent: "exponent0"),
-            RSAPublicKey(modulus: "modulus1", exponent: "exponent1"),
-            RSAPublicKey(modulus: "modulus2", exponent: "exponent2")
-        ]
-
-        for (index, key) in set.enumerated() {
-            XCTAssertEqual((key as! RSAPublicKey).modulus, rsaKeys[index].modulus)
-            XCTAssertEqual((key as! RSAPublicKey).exponent, rsaKeys[index].exponent)
-        }
-    }
-
-    func testSubscriptAccess() {
-        let set =  JWKSet(keys: rsaKeys)
-
-        XCTAssertEqual((set[1] as! RSAPublicKey).modulus, rsaKeys[1].modulus)
-        XCTAssertEqual((set[0] as! RSAPublicKey).modulus, rsaKeys[0].modulus)
-        XCTAssertEqual((set[2] as! RSAPublicKey).modulus, rsaKeys[2].modulus)
-    }
-
-    func testIndices() {
-        let set = JWKSet(keys: rsaKeys)
-
-        XCTAssertEqual(set.startIndex, rsaKeys.startIndex)
-        XCTAssertEqual(set.endIndex, rsaKeys.endIndex)
-        XCTAssertEqual(set.index(after: 1), rsaKeys.index(after: 1))
-    }
-
-    func testCount() {
-        var set = JWKSet(keys: rsaKeys)
-
-        XCTAssertEqual(set.count, 3)
-        XCTAssertFalse(set.isEmpty)
-
-        set = JWKSet(keys: [])
-
-        XCTAssertEqual(set.count, 0)
-        XCTAssertTrue(set.isEmpty)
-    }
-
-}
+//class JWKSetCollectionTests: XCTestCase {
+//
+//    let rsaKeys = [
+//        RSAPublicKey(modulus: "modulus0", exponent: "exponent0"),
+//        RSAPublicKey(modulus: "modulus1", exponent: "exponent1"),
+//        RSAPublicKey(modulus: "modulus2", exponent: "exponent2")
+//    ]
+//
+//    func testFowardIterating() {
+//        let set = JWKSet(keys: rsaKeys)
+//
+//        for (index, key) in set.enumerated() {
+//            XCTAssertEqual((key as! RSAPublicKey).modulus, rsaKeys[index].modulus)
+//            XCTAssertEqual((key as! RSAPublicKey).exponent, rsaKeys[index].exponent)
+//        }
+//    }
+//
+//    func testCreationFromArrayLiteral() {
+//        let set: JWKSet = [
+//            RSAPublicKey(modulus: "modulus0", exponent: "exponent0"),
+//            RSAPublicKey(modulus: "modulus1", exponent: "exponent1"),
+//            RSAPublicKey(modulus: "modulus2", exponent: "exponent2")
+//        ]
+//
+//        for (index, key) in set.enumerated() {
+//            XCTAssertEqual((key as! RSAPublicKey).modulus, rsaKeys[index].modulus)
+//            XCTAssertEqual((key as! RSAPublicKey).exponent, rsaKeys[index].exponent)
+//        }
+//    }
+//
+//    func testSubscriptAccess() {
+//        let set =  JWKSet(keys: rsaKeys)
+//
+//        XCTAssertEqual((set[1] as! RSAPublicKey).modulus, rsaKeys[1].modulus)
+//        XCTAssertEqual((set[0] as! RSAPublicKey).modulus, rsaKeys[0].modulus)
+//        XCTAssertEqual((set[2] as! RSAPublicKey).modulus, rsaKeys[2].modulus)
+//    }
+//
+//    func testIndices() {
+//        let set = JWKSet(keys: rsaKeys)
+//
+//        XCTAssertEqual(set.startIndex, rsaKeys.startIndex)
+//        XCTAssertEqual(set.endIndex, rsaKeys.endIndex)
+//        XCTAssertEqual(set.index(after: 1), rsaKeys.index(after: 1))
+//    }
+//
+//    func testCount() {
+//        var set = JWKSet(keys: rsaKeys)
+//
+//        XCTAssertEqual(set.count, 3)
+//        XCTAssertFalse(set.isEmpty)
+//
+//        set = JWKSet(keys: [])
+//
+//        XCTAssertEqual(set.count, 0)
+//        XCTAssertTrue(set.isEmpty)
+//    }
+//
+//}

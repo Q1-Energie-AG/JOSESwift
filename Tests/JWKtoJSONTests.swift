@@ -27,44 +27,44 @@ import XCTest
 
 class JWKtoJSONTests: RSACryptoTestCase {
 
-    func testJSONString() {
-        let jwk = try! RSAPublicKey(publicKey: publicKeyAlice2048!, additionalParameters: [
-            "alg": "RS256",
-            "kid": "2011-04-29"
-        ])
-
-        let jsonString = jwk.jsonString()
-        XCTAssertNotNil(jsonString)
-
-        let jsonData = jsonString!.data(using: .utf8)!
-        let dict = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any]
-        XCTAssertNotNil(dict!)
-
-        XCTAssertEqual(dict!["kty"] as? String ?? "", "RSA")
-        XCTAssertEqual(dict!["alg"] as? String ?? "", "RS256")
-        XCTAssertEqual(dict!["kid"] as? String ?? "", "2011-04-29")
-
-        XCTAssertEqual(dict!["n"] as? String ?? "", expectedModulus2048Base64)
-        XCTAssertEqual(dict!["e"] as? String ?? "", expectedExponentBase64)
-    }
-
-    func testJSONData() {
-        let jwk = try! RSAPublicKey(publicKey: publicKeyAlice2048!, additionalParameters: [
-            "alg": "RS256",
-            "kid": "2011-04-29"
-        ])
-
-        let jsonData = jwk.jsonData()
-        XCTAssertNotNil(jsonData!)
-
-        let dict = try? JSONSerialization.jsonObject(with: jsonData!, options: []) as? [String: Any]
-        XCTAssertNotNil(dict!)
-
-        XCTAssertEqual(dict!["kty"] as? String ?? "", "RSA")
-        XCTAssertEqual(dict!["alg"] as? String ?? "", "RS256")
-        XCTAssertEqual(dict!["kid"] as? String ?? "", "2011-04-29")
-
-        XCTAssertEqual(dict!["n"] as? String ?? "", expectedModulus2048Base64)
-        XCTAssertEqual(dict!["e"] as? String ?? "", expectedExponentBase64)
-    }
+//    func testJSONString() {
+//        let jwk = try! RSAPublicKey(publicKey: publicKeyAlice2048!, additionalParameters: [
+//            "alg": "RS256",
+//            "kid": "2011-04-29"
+//        ])
+//
+//        let jsonString = jwk.jsonString()
+//        XCTAssertNotNil(jsonString)
+//
+//        let jsonData = jsonString!.data(using: .utf8)!
+//        let dict = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any]
+//        XCTAssertNotNil(dict!)
+//
+//        XCTAssertEqual(dict!["kty"] as? String ?? "", "RSA")
+//        XCTAssertEqual(dict!["alg"] as? String ?? "", "RS256")
+//        XCTAssertEqual(dict!["kid"] as? String ?? "", "2011-04-29")
+//
+//        XCTAssertEqual(dict!["n"] as? String ?? "", expectedModulus2048Base64)
+//        XCTAssertEqual(dict!["e"] as? String ?? "", expectedExponentBase64)
+//    }
+//
+//    func testJSONData() {
+//        let jwk = try! RSAPublicKey(publicKey: publicKeyAlice2048!, additionalParameters: [
+//            "alg": "RS256",
+//            "kid": "2011-04-29"
+//        ])
+//
+//        let jsonData = jwk.jsonData()
+//        XCTAssertNotNil(jsonData!)
+//
+//        let dict = try? JSONSerialization.jsonObject(with: jsonData!, options: []) as? [String: Any]
+//        XCTAssertNotNil(dict!)
+//
+//        XCTAssertEqual(dict!["kty"] as? String ?? "", "RSA")
+//        XCTAssertEqual(dict!["alg"] as? String ?? "", "RS256")
+//        XCTAssertEqual(dict!["kid"] as? String ?? "", "2011-04-29")
+//
+//        XCTAssertEqual(dict!["n"] as? String ?? "", expectedModulus2048Base64)
+//        XCTAssertEqual(dict!["e"] as? String ?? "", expectedExponentBase64)
+//    }
 }

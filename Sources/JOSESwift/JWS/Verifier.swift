@@ -48,12 +48,6 @@ public struct Verifier {
     /// - Returns: A fully initialized `Verifier` or `nil` if provided key is of the wrong type.
     public init?<KeyType>(verifyingAlgorithm: SignatureAlgorithm, publicKey: KeyType) {
         switch verifyingAlgorithm {
-        case .RS256, .RS384, .RS512, .PS256, .PS384, .PS512:
-            guard type(of: publicKey) is RSAVerifier.KeyType.Type else {
-                return nil
-            }
-            // swiftlint:disable:next force_cast
-            self.verifier = RSAVerifier(algorithm: verifyingAlgorithm, publicKey: publicKey as! RSAVerifier.KeyType)
         case .ES256, .ES384, .ES512:
             guard type(of: publicKey) is ECVerifier.KeyType.Type else {
                 return nil

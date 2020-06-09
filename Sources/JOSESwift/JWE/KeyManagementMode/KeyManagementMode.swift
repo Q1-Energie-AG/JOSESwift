@@ -37,16 +37,6 @@ extension KeyManagementAlgorithm {
         encryptionKey: KeyType
     ) -> EncryptionKeyManagementMode? {
         switch self {
-        case .RSA1_5, .RSAOAEP, .RSAOAEP256:
-            guard let recipientPublicKey = cast(encryptionKey, to: RSAKeyEncryption.KeyType.self) else {
-                return nil
-            }
-
-            return RSAKeyEncryption.EncryptionMode(
-                keyManagementAlgorithm: self,
-                contentEncryptionAlgorithm: contentEncryptionAlgorithm,
-                recipientPublicKey: recipientPublicKey
-            )
         case .A128KW, .A192KW, .A256KW:
             guard let sharedSymmetricKey = cast(encryptionKey, to: AESKeyWrappingMode.KeyType.self) else {
                 return nil
@@ -70,16 +60,6 @@ extension KeyManagementAlgorithm {
         decryptionKey: KeyType
     ) -> DecryptionKeyManagementMode? {
         switch self {
-        case .RSA1_5, .RSAOAEP, .RSAOAEP256:
-            guard let recipientPrivateKey = cast(decryptionKey, to: RSAKeyEncryption.KeyType.self) else {
-                return nil
-            }
-
-            return RSAKeyEncryption.DecryptionMode(
-                keyManagementAlgorithm: self,
-                contentEncryptionAlgorithm: contentEncryptionAlgorithm,
-                recipientPrivateKey: recipientPrivateKey
-            )
         case .A128KW, .A192KW, .A256KW:
             guard let sharedSymmetricKey = cast(decryptionKey, to: AESKeyWrappingMode.KeyType.self) else {
                 return nil
