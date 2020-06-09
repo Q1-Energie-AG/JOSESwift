@@ -451,21 +451,47 @@
 			path = JOSESwift;
 			sourceTree = "<group>";
 		};
-		65125A2C1FBF6B79007CF3AE /* JWS */ = {
+		0A2382C3248FB72400B30CEF /* JOSESwiftTests */ = {
 			isa = PBXGroup;
 			children = (
-				9665A24622B0F3E100EAC14A /* ECAsn1IntegerConversionTests.swift */,
-				6575696C203EF9CE004A0EFD /* JWSValidationTests.swift */,
-				652C61391FD99A3300578E2A /* JWSSigningInputTest.swift */,
-				C803EFE81FA7893A00B71335 /* JWSHeaderTests.swift */,
-				C803EFE41FA77E3000B71335 /* JWSRSATests.swift */,
-				65125A311FBF85FA007CF3AE /* JWSDeserializationTests.swift */,
-				5FB765151D1E18BD7BFB95B8 /* JWSECTests.swift */,
+				C84BDE1A1FAB461B0002B5D0 /* TestKeys.plist */,
+				65A9D3DB1F45CDD7004E0B61 /* Info.plist */,
+				0A2382C8248FB76200B30CEF /* JWK */,
+				0A2382C7248FB75400B30CEF /* JWS */,
+				0A2382C6248FB74700B30CEF /* JWE */,
+				0A2382C5248FB73C00B30CEF /* Crypto */,
+				0A2382C4248FB73200B30CEF /* Common */,
 			);
-			name = JWS;
+			path = JOSESwiftTests;
 			sourceTree = "<group>";
 		};
-		65125A2E1FBF6B9E007CF3AE /* JWE */ = {
+		0A2382C4248FB73200B30CEF /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C803EFF21FA8A98F00B71335 /* DataExtensionTests.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		0A2382C5248FB73C00B30CEF /* Crypto */ = {
+			isa = PBXGroup;
+			children = (
+				C81DD9291FD7096B00026024 /* HMACTests.swift */,
+				C84BDE181FAB44BE0002B5D0 /* CryptoTestCase.swift */,
+				C84BDE161FAB1CB60002B5D0 /* RSASignerTests.swift */,
+				C8EE14531FAC797500A616E4 /* RSAVerifierTests.swift */,
+				C8F0964F1FC56B25000BEE4D /* RSAEncryptionTests.swift */,
+				C8A5923F1FC71586009CEFA6 /* RSADecryptionTests.swift */,
+				5FB7683476B521915FDB2248 /* RSACryptoTestCase.swift */,
+				5FB76BD4F46045BF2B182483 /* ECCryptoTestCase.swift */,
+				5FB768A267E1A15571CC58AA /* ECVerifierTests.swift */,
+				5FB76B5896AAA87ACD56D0D0 /* ECSignerTests.swift */,
+				65F2558F23FBE75300A3FC44 /* AESKeyWrapTests.swift */,
+			);
+			path = Crypto;
+			sourceTree = "<group>";
+		};
+		0A2382C6248FB74700B30CEF /* JWE */ = {
 			isa = PBXGroup;
 			children = (
 				8A30B8F922118FE6001834E3 /* JWECompressionTests.swift */,
@@ -481,50 +507,24 @@
 				C83070041FD1B7390068C5CB /* AESCBCContentDecryptionTests.swift */,
 				65B5B93F23F5604A009C8396 /* DirectEncryptionKeyManagementModeTests.swift */,
 			);
-			name = JWE;
+			path = JWE;
 			sourceTree = "<group>";
 		};
-		65125A2F1FBF6BAC007CF3AE /* Crypto */ = {
+		0A2382C7248FB75400B30CEF /* JWS */ = {
 			isa = PBXGroup;
 			children = (
-				C81DD9291FD7096B00026024 /* HMACTests.swift */,
-				C84BDE181FAB44BE0002B5D0 /* CryptoTestCase.swift */,
-				C84BDE161FAB1CB60002B5D0 /* RSASignerTests.swift */,
-				C8EE14531FAC797500A616E4 /* RSAVerifierTests.swift */,
-				C8F0964F1FC56B25000BEE4D /* RSAEncryptionTests.swift */,
-				C8A5923F1FC71586009CEFA6 /* RSADecryptionTests.swift */,
-				5FB7683476B521915FDB2248 /* RSACryptoTestCase.swift */,
-				5FB76BD4F46045BF2B182483 /* ECCryptoTestCase.swift */,
-				5FB768A267E1A15571CC58AA /* ECVerifierTests.swift */,
-				5FB76B5896AAA87ACD56D0D0 /* ECSignerTests.swift */,
-				65F2558F23FBE75300A3FC44 /* AESKeyWrapTests.swift */,
+				9665A24622B0F3E100EAC14A /* ECAsn1IntegerConversionTests.swift */,
+				6575696C203EF9CE004A0EFD /* JWSValidationTests.swift */,
+				652C61391FD99A3300578E2A /* JWSSigningInputTest.swift */,
+				C803EFE81FA7893A00B71335 /* JWSHeaderTests.swift */,
+				C803EFE41FA77E3000B71335 /* JWSRSATests.swift */,
+				65125A311FBF85FA007CF3AE /* JWSDeserializationTests.swift */,
+				5FB765151D1E18BD7BFB95B8 /* JWSECTests.swift */,
 			);
-			name = Crypto;
+			path = JWS;
 			sourceTree = "<group>";
 		};
-		65125A301FBF6BBA007CF3AE /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				C803EFF21FA8A98F00B71335 /* DataExtensionTests.swift */,
-			);
-			name = Common;
-			sourceTree = "<group>";
-		};
-		65A9D3D81F45CDD7004E0B61 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				65125A301FBF6BBA007CF3AE /* Common */,
-				65125A2F1FBF6BAC007CF3AE /* Crypto */,
-				65125A2E1FBF6B9E007CF3AE /* JWE */,
-				65125A2C1FBF6B79007CF3AE /* JWS */,
-				65E733CD1FEBE9670009EAC6 /* JWK */,
-				C84BDE1A1FAB461B0002B5D0 /* TestKeys.plist */,
-				65A9D3DB1F45CDD7004E0B61 /* Info.plist */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		65E733CD1FEBE9670009EAC6 /* JWK */ = {
+		0A2382C8248FB76200B30CEF /* JWK */ = {
 			isa = PBXGroup;
 			children = (
 				6514ADCA2031DD27008A4DD3 /* ASN1DEREncodingTests.swift */,
@@ -552,7 +552,15 @@
 				5FB763E289522DBBAEE02BCD /* ECPrivateKeyToSecKeyTests.swift */,
 				5FB7631E9F751B88036177DE /* ECPrivateKeyToDataTests.swift */,
 			);
-			name = JWK;
+			path = JWK;
+			sourceTree = "<group>";
+		};
+		65A9D3D81F45CDD7004E0B61 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				0A2382C3248FB72400B30CEF /* JOSESwiftTests */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		65FBFDD81F45CC7C005C7D68 = {
@@ -854,7 +862,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				DEVELOPMENT_TEAM = 4857DE3DAC;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = Tests/JOSESwiftTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(PROJECT_DIR)/Pods";
 				PRODUCT_BUNDLE_IDENTIFIER = com.airsidemobile.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -867,7 +875,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				DEVELOPMENT_TEAM = 4857DE3DAC;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = Tests/JOSESwiftTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(PROJECT_DIR)/Pods";
 				PRODUCT_BUNDLE_IDENTIFIER = com.airsidemobile.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
