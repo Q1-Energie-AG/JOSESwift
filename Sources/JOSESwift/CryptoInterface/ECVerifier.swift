@@ -22,9 +22,7 @@
 //
 
 import Foundation
-#if canImport(CryptoKit)
 import CryptoKit
-#endif
 
 /// A `Verifier` to verify a signature created with an elliptic curve algorithm.
 internal struct ECVerifier: VerifierProtocol {

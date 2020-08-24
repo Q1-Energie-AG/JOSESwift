@@ -262,7 +262,6 @@ internal struct EC {
   }
 }
 
-#if canImport(CryptoKit)
 import CryptoKit
 
 @available(iOS 13.0, *)
@@ -414,4 +413,3 @@ extension SecureEnclave.P256.Signing.PrivateKey {
     }
   }
 }
-#endif

@@ -22,9 +22,7 @@
 //
 
 import Foundation
-#if canImport(CryptoKit)
 import CryptoKit
-#endif
 
 /// A `Signer` to sign an input with an elliptic curve algorithm.
 internal struct ECSigner: SignerProtocol {
